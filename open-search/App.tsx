@@ -1,6 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, /*Text,*/ View } from 'react-native';
 import Button from './components/button/button';
+import Accordion from './components/accordionv1/accordion';
+
+
+const accordionItems = [
+  {
+    title: 'Computer Science Resources',
+    links: [
+      { title: 'Algorithms & Data Structures', url: 'https://example.com/algorithms' },
+      { title: 'Programming Languages', url: 'https://example.com/programming' },
+      { title: 'Software Engineering', url: 'https://example.com/software-eng' },
+    ],
+  },
+  {
+    title: 'Mathematics',
+    links: [
+      { title: 'Calculus', url: 'https://example.com/calculus' },
+      { title: 'Linear Algebra', url: 'https://example.com/linear-algebra' },
+      { title: 'Statistics', url: 'https://example.com/statistics' },
+    ],
+  },
+  {
+    title: 'Science',
+    links: [
+      { title: 'Physics', url: 'https://example.com/physics' },
+      { title: 'Chemistry', url: 'https://example.com/chemistry' },
+      { title: 'Biology', url: 'https://example.com/biology' },
+    ],
+  },
+];
+
+
 
 const buttons = [
   {
@@ -24,6 +55,7 @@ export default function App() {
         <Button key={index} text={button.text} onPress={button.onPress} />
       ))}
       {/*<Text>Hello World</Text>*/}
+      <Accordion items={accordionItems} />
       <StatusBar style="auto" />
     </View>
   );
