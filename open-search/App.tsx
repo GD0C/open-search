@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, /*Text,*/ View } from 'react-native';
 import Button from './components/button/button';
-import Accordion from './components/accordionv1/accordion';
+//import Accordion from './components/accordionv1/accordion';
 import AccordionV2 from './components/accordionv2/accordion-v2';
 
 
+
+// TODO: figure out a specification design for this to follow - I want it to link with the content/ folder that I've started
+
 const accordionItems = [
   {
-    title: 'Computer Science Resources',
+    title: 'Computer Science',
     links: [
       { title: 'Algorithms & Data Structures', url: 'https://example.com/algorithms' },
       { title: 'Programming Languages', url: 'https://example.com/programming' },
