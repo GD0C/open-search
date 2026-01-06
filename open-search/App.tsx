@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, /*Text,*/ View } from 'react-native';
 import Button from './components/button/button';
 import Accordion from './components/accordionv1/accordion';
+import AccordionV2 from './components/accordionv2/accordion-v2';
 
 
 const accordionItems = [
@@ -19,6 +20,7 @@ const accordionItems = [
       { title: 'Calculus', url: 'https://example.com/calculus' },
       { title: 'Linear Algebra', url: 'https://example.com/linear-algebra' },
       { title: 'Statistics', url: 'https://example.com/statistics' },
+      { title: 'Calculus', url: 'https://example.com/calculus' },
     ],
   },
   {
@@ -55,7 +57,8 @@ export default function App() {
         <Button key={index} text={button.text} onPress={button.onPress} />
       ))}
       {/*<Text>Hello World</Text>*/}
-      <Accordion items={accordionItems} />
+      {/*<Accordion items={accordionItems} /> */}
+      <AccordionV2 items={accordionItems} />
       <StatusBar style="auto" />
     </View>
   );
