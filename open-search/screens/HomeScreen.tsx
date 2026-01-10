@@ -2,6 +2,7 @@ import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Button from '../components/button/button';
 import Accordion from '../components/accordionv1/accordion';
+import HoverEffect from '../components/hover-effect/HoverEffect';
 
 const accordionItems = [
   {
@@ -40,9 +41,10 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       {buttons.map((button, index) => (
-        <Button key={index} text={button.text} onPress={button.onPress} />
+        <HoverEffect key={index}>
+          <Button text={button.text} onPress={button.onPress} />
+        </HoverEffect>
       ))}
-
       <Accordion items={accordionItems} />
       <StatusBar style="auto" />
     </View>
