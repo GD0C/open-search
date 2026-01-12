@@ -1,10 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
 import Button from '../components/button/button';
 import Accordion from '../components/accordionv1/accordion';
 import HoverEffect from '../components/hover-effect/HoverEffect';
-import { useNavigation } from '@react-navigation/native';
-import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/types';
+import { useEffect } from 'react';
 
 const accordionItems = [
   {
@@ -32,19 +34,13 @@ const accordionItems = [
     ],
   },
 ];
-
 export default function HomeScreen() {
-  type RootStackParamList = {
-    Home: undefined;
-    ComputerScienceHome: undefined;
-  };
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(); 
   const buttons = [
-    { text: 'Computer Science', onPress: () => navigation.navigate('ComputerScienceHome') },
+    { text: 'Computer Science', onPress: () => navigation.navigate('Computer Science') },
     { text: 'Mathematics', onPress: () => console.log('Button 2 pressed') },
     { text: 'Science', onPress: () => console.log('Button 3 pressed') },
   ];
-
   return (
     <View style={styles.container}>
       {buttons.map((button, index) => (
