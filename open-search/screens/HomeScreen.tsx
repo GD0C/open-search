@@ -3,6 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import Button from '../components/button/button';
 import Accordion from '../components/accordionv1/accordion';
 import HoverEffect from '../components/hover-effect/HoverEffect';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 const accordionItems = [
   {
@@ -31,13 +33,18 @@ const accordionItems = [
   },
 ];
 
-const buttons = [
-  { text: 'Computer Science', onPress: () => console.log('Button 1 pressed') },
-  { text: 'Mathematics', onPress: () => console.log('Button 2 pressed') },
-  { text: 'Science', onPress: () => console.log('Button 3 pressed') },
-];
-
 export default function HomeScreen() {
+  type RootStackParamList = {
+    Home: undefined;
+    ComputerScienceHome: undefined;
+  };
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const buttons = [
+    { text: 'Computer Science', onPress: () => navigation.navigate('ComputerScienceHome') },
+    { text: 'Mathematics', onPress: () => console.log('Button 2 pressed') },
+    { text: 'Science', onPress: () => console.log('Button 3 pressed') },
+  ];
+
   return (
     <View style={styles.container}>
       {buttons.map((button, index) => (
