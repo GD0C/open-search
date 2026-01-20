@@ -1,0 +1,64 @@
+import { StyleSheet, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useNavigation } from '@react-navigation/native';
+import Button from '../components/button/button';
+import Accordion from '../components/accordionv1/accordion';
+import HoverEffect from '../components/hover-effect/HoverEffect';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../navigation/types';
+import { useEffect } from 'react';
+
+const accordionItems = [
+  {
+    title: 'Computer Science Resources',
+    links: [
+      { title: 'Algorithms & Data Structures', url: 'https://example.com/algorithms' },
+      { title: 'Programming Languages', url: 'https://example.com/programming' },
+      { title: 'Software Engineering', url: 'https://example.com/software-eng' },
+    ],
+  },
+  {
+    title: 'Mathematics',
+    links: [
+      { title: 'Calculus', url: 'https://example.com/calculus' },
+      { title: 'Linear Algebra', url: 'https://example.com/linear-algebra' },
+      { title: 'Statistics', url: 'https://example.com/statistics' },
+    ],
+  },
+  {
+    title: 'Science',
+    links: [
+      { title: 'Physics', url: 'https://example.com/physics' },
+      { title: 'Chemistry', url: 'https://example.com/chemistry' },
+      { title: 'Biology', url: 'https://example.com/biology' },
+    ],
+  },
+];
+export default function HomeScreen() {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>(); 
+  const buttons = [
+    { text: 'Computer Science', onPress: () => navigation.navigate('Computer Science') },
+    { text: 'Mathematics', onPress: () => console.log('Button 2 pressed') },
+    { text: 'Science', onPress: () => console.log('Button 3 pressed') },
+  ];
+  return (
+    <View style={styles.container}>
+      {buttons.map((button, index) => (
+        <HoverEffect key={index}>
+          <Button text={button.text} onPress={button.onPress} />
+        </HoverEffect>
+      ))}
+      <Accordion items={accordionItems} />
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

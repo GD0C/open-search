@@ -1,77 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, /*Text,*/ View } from 'react-native';
-import Button from './components/button/button';
-//import Accordion from './components/accordionv1/accordion';
-import AccordionV2 from './components/accordionv2/accordion-v2';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {
+  useFonts,
+  Quicksand_300Light,
+  Quicksand_400Regular,
+  Quicksand_500Medium,
+  Quicksand_600SemiBold,
+  Quicksand_700Bold,
+} from '@expo-google-fonts/quicksand';
+import HomeScreen from './screens/HomeScreen'; //Not sure if this line will read as an error for everyone but if it does, you can ignore it.
+import ComputerScienceHome from './screens/computer-science/home';
 
-
-
-// TODO: figure out a specification design for this to follow - I want it to link with the content/ folder that I've started
-
-const accordionItems = [
-  {
-    title: 'Computer Science',
-    links: [
-      { title: 'Algorithms & Data Structures', url: 'https://example.com/algorithms' },
-      { title: 'Programming Languages', url: 'https://example.com/programming' },
-      { title: 'Software Engineering', url: 'https://example.com/software-eng' },
-    ],
-  },
-  {
-    title: 'Mathematics',
-    links: [
-      { title: 'Calculus', url: 'https://example.com/calculus' },
-      { title: 'Linear Algebra', url: 'https://example.com/linear-algebra' },
-      { title: 'Statistics', url: 'https://example.com/statistics' },
-      { title: 'Calculus', url: 'https://example.com/calculus' },
-    ],
-  },
-  {
-    title: 'Science',
-    links: [
-      { title: 'Physics', url: 'https://example.com/physics' },
-      { title: 'Chemistry', url: 'https://example.com/chemistry' },
-      { title: 'Biology', url: 'https://example.com/biology' },
-    ],
-  },
-];
-
-
-
-const buttons = [
-  {
-    text: 'Computer Science',
-    onPress: () => console.log('Button 1 pressed'),
-  },
-  {
-    text: 'Mathematics',
-    onPress: () => console.log('Button 2 pressed'),
-  },
-  {
-    text: 'Science',
-    onPress: () => console.log('Button 3 pressed'),
-  },
-]
+const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    Quicksand_300Light,
+    Quicksand_400Regular,
+    Quicksand_500Medium,
+    Quicksand_600SemiBold,
+    Quicksand_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      {buttons.map((button, index) => (
-        <Button key={index} text={button.text} onPress={button.onPress} />
-      ))}
-      {/*<Text>Hello World</Text>*/}
-      {/*<Accordion items={accordionItems} /> */}
-      <AccordionV2 items={accordionItems} />
-      <StatusBar style="auto" />
-    </View>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen 
+          name="ComputerScienceHome" component={ComputerScienceHome} 
+          options={{ title: 'Computer Science' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
