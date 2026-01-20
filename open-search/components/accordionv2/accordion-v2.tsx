@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Linking } from 'react-native';
-import { AccordionProps } from './accordion.interface';
+import { AccordionProps } from '../accordionv1/accordion.interface';
 
-const Accordion: React.FC<AccordionProps> = ({ items }) => {
+export const AccordionV2: React.FC<AccordionProps> = ({ items }) => {
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
   const toggleItem = (index: number) => {
@@ -11,10 +11,6 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
         ? prev.filter(i => i !== index)
         : [...prev, index]
     );
-  };
-
-  const handleLinkPress = (url: string) => {
-    Linking.openURL(url);
   };
 
   return (
@@ -27,7 +23,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
           >
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.arrow}>
-              {expandedItems.includes(index) ? 'x' : '¿'}
+              {expandedItems.includes(index) ? 'x' : 'â˜°'}
             </Text>
           </TouchableOpacity>
 
@@ -37,7 +33,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                 <TouchableOpacity
                   key={linkIndex}
                   style={styles.linkContainer}
-                  onPress={() => handleLinkPress(link.url)}
+                  onPress={() => console.log('Link pressed')}
                 >
                   <Text style={styles.linkText}>{link.title}</Text>
                 </TouchableOpacity>
@@ -52,14 +48,14 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '95%',
     marginVertical: 10,
   },
   itemContainer: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#000',
     marginVertical: 2,
-    borderRadius: 5,
+    borderRadius: 10,
   },
   titleContainer: {
     flexDirection: 'row',
@@ -67,6 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
     backgroundColor: '#f8f8f8',
+    borderRadius: 10,
   },
   title: {
     fontSize: 16,
@@ -80,6 +77,7 @@ const styles = StyleSheet.create({
   contentContainer: {
     padding: 10,
     backgroundColor: '#fff',
+    borderRadius: 10,
   },
   linkContainer: {
     paddingVertical: 8,
@@ -94,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Accordion;
+export default AccordionV2;
